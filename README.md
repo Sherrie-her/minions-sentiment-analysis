@@ -36,3 +36,7 @@ The analysis pipeline used:
 3. Sentiment was determined using dictionary-based approach
 4. Geographic information was derived from tweet time zones
 5. Results were aggregated into the final CSV format
+![sentiment1](https://github.com/user-attachments/assets/4488d165-facd-44b6-affc-3b80e6408a29)
+![sentiment2](https://github.com/user-attachments/assets/66f4f2db-6752-4e71-91f9-70be1b4d4fdf)
+![sentiment3](https://github.com/user-attachments/assets/7f2851df-1ec2-43ce-8a71-76742f69453e)
+
