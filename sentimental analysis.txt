@@ -1,0 +1,1723 @@
+Last login: Thu Jul 18 02:05:39 on ttys000
+(base) sondaisy@daisys-Laptop ~ % ssh bd1148@34.219.23.167 
+bd1148@34.219.23.167's password: 
+Last login: Wed Jul 17 17:05:49 2024 from 175.208.217.164
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+79 package(s) needed for security, out of 130 available
+Run "sudo yum update" to apply all updates.
+                                                                    
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR    
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R   
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R 
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R 
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR   
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R  
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+                                                                    
+-bash-4.2$ beeline
+Connecting to jdbc:hive2://ip-172-31-2-142.us-west-2.compute.internal:10000/default;password=bd1148;user=bd1148
+Connected to: Apache Hive (version 3.1.2-amzn-4)
+Driver: Hive JDBC (version 3.1.2-amzn-4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 3.1.2-amzn-4 by Apache Hive
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION "/user/bd1148/tmp/tweets_staging";
+INFO  : Compiling command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f): CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_staging"
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f); Time taken: 0.051 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f): CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_staging"
+INFO  : Completed executing command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.099 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-------------------+
+|     tab_name      |
++-------------------+
+| dictionary        |
+| l1                |
+| l2                |
+| l3                |
+| products          |
+| ratings           |
+| raw_tweet         |
+| raw_tweets        |
+| time_zone_map     |
+| tweets_clean      |
+| tweets_sentiment  |
+| tweets_simple     |
+| tweets_text       |
+| tweetsbi          |
++-------------------+
+14 rows selected (0.059 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> use bd1148
+. . . . . . . . . . . . . . . . . . . . . . .> show tables;
+Error: Error while compiling statement: FAILED: ParseException line 2:0 missing EOF at 'show' near 'bd1148' (state=42000,code=40000)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> use bd1148;
+INFO  : Compiling command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442): use bd1148
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442): use bd1148
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.033 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a); Time taken: 0.017 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| tweets_text        |
+| weblogs            |
++--------------------+
+9 rows selected (0.032 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE TABLE IF NOT EXISTS tweets_text (
+. . . . . . . . . . . . . . . . . . . . . . .> id BIGINT,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_date STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_year STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_month STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_day STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_time STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> text STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> time_zone STRING);
+INFO  : Compiling command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7): CREATE TABLE IF NOT EXISTS tweets_text (
+id BIGINT,
+created_at STRING,
+created_at_date STRING,
+created_at_year STRING,
+created_at_month STRING,
+created_at_day STRING,
+created_at_time STRING,
+text STRING,
+time_zone STRING)
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7); Time taken: 0.02 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7): CREATE TABLE IF NOT EXISTS tweets_text (
+id BIGINT,
+created_at STRING,
+created_at_date STRING,
+created_at_year STRING,
+created_at_month STRING,
+created_at_day STRING,
+created_at_time STRING,
+text STRING,
+time_zone STRING)
+INFO  : Completed executing command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.027 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| tweets_text        |
+| weblogs            |
++--------------------+
+9 rows selected (0.03 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> FROM raw_tweets
+. . . . . . . . . . . . . . . . . . . . . . .> INSERT OVERWRITE TABLE tweets_text
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.created_at'),
+. . . . . . . . . . . . . . . . . . . . . . .> CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+. . . . . . . . . . . . . . . . . . . . . . .> ' ',
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+. . . . . . . . . . . . . . . . . . . . . . .> CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'May' then '05' WHEN 'Jun' then '06'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+. . . . . . . . . . . . . . . . . . . . . . .> end,
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.text'),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.user.time_zone');
+INFO  : Compiling command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44): FROM raw_tweets
+INSERT OVERWRITE TABLE tweets_text
+SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+get_json_object(json_response, '$.created_at'),
+CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+' ',
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+WHEN 'May' then '05' WHEN 'Jun' then '06'
+WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+end,
+SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+get_json_object(json_response, '$.text'),
+get_json_object(json_response, '$.user.time_zone')
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null), FieldSchema(name:_c1, type:string, comment:null), FieldSchema(name:_c2, type:string, comment:null), FieldSchema(name:_c3, type:string, comment:null), FieldSchema(name:_c4, type:string, comment:null), FieldSchema(name:_c5, type:string, comment:null), FieldSchema(name:_c6, type:string, comment:null), FieldSchema(name:_c7, type:string, comment:null), FieldSchema(name:_c8, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44); Time taken: 0.196 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44): FROM raw_tweets
+INSERT OVERWRITE TABLE tweets_text
+SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+get_json_object(json_response, '$.created_at'),
+CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+' ',
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+WHEN 'May' then '05' WHEN 'Jun' then '06'
+WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+end,
+SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+get_json_object(json_response, '$.text'),
+get_json_object(json_response, '$.user.time_zone')
+INFO  : Query ID = hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44
+INFO  : Tez session hasn't been created yet. Opening session
+INFO  : Dag name: FROM raw_tweets
+INSERT...'$.user.time_zone') (Stage-1)
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1403)
+
+INFO  : Map 1: 0/7	Reducer 2: 0/1	
+INFO  : Map 1: 0/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+1)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 5(+2)/7	Reducer 2: 0(+1)/1	
+INFO  : Map 1: 7/7	Reducer 2: 1/1	
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table bd1148.tweets_text from hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/hive/warehouse/bd1148.db/tweets_text/.hive-staging_hive_2024-07-17_17-13-10_838_5406558113045572179-2740/-ext-10000
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44); Time taken: 16.498 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (16.701 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from raw_tweets LIMIT 1; 
+INFO  : Compiling command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499): select * from raw_tweets LIMIT 1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:raw_tweets.json_response, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499); Time taken: 0.136 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499): select * from raw_tweets LIMIT 1
+INFO  : Completed executing command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++----------------------------------------------------+
+|              raw_tweets.json_response              |
++----------------------------------------------------+
+| {"created_at":"Mon Aug 24 05:50:50 +0000 2015","id":635690712110092288,"id_str":"635690712110092288","text":"https:\/\/t.co\/fuRD2DkoIt","source":"\u003ca href=\"http:\/\/ifttt.com\" rel=\"nofollow\"\u003eIFTTT\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":3408479698,"id_str":"3408479698","name":"Mad Rabbit","screen_name":"SirRabbits","location":"","url":null,"description":null,"protected":false,"verified":false,"followers_count":108,"friends_count":109,"listed_count":0,"favourites_count":15,"statuses_count":29242,"created_at":"Sat Aug 08 10:09:37 +0000 2015","utc_offset":null,"time_zone":null,"geo_enabled":false,"lang":"en","contributors_enabled":false,"is_translator":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_link_color":"0084B4","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/629958495111094272\/OKzy80CV_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/629958495111094272\/OKzy80CV_normal.png","default_profile":true,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"quoted_status_id":633224386179428353,"quoted_status_id_str":"633224386179428353","quoted_status":{"created_at":"Mon Aug 17 10:30:33 +0000 2015","id":633224386179428353,"id_str":"633224386179428353","text":"#WIN 1 of 20 Minions backpacks! RT &amp; Follow with #BackToMinions to enter. T&amp;C: http:\/\/t.co\/AEW12JuzvW http:\/\/t.co\/khGyxqTMPt","source":"\u003ca href=\"http:\/\/www.hootsuite.com\" rel=\"nofollow\"\u003eHootsuite\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":39240629,"id_str":"39240629","name":"Poundland","screen_name":"Poundland","location":"UK","url":"http:\/\/www.poundland.co.uk","description":"Awarded the Discount Retailer of the Year at the 2014 Grocer Gold Awards for a second year running.","protected":false,"verified":false,"followers_count":47673,"friends_count":1692,"listed_count":221,"favourites_count":355,"statuses_count":13186,"created_at":"Mon May 11 12:25:29 +0000 2009","utc_offset":3600,"time_zone":"London","geo_enabled":false,"lang":"en","contributors_enabled":false,"is_translator":false,"profile_background_color":"FCBA01","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/606042561464123392\/tSWMs0g5.png","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/606042561464123392\/tSWMs0g5.png","profile_background_tile":true,"profile_link_color":"F59A04","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/616202263560892416\/QortB7yV_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/616202263560892416\/QortB7yV_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/39240629\/1435746007","default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[{"text":"WIN","indices":[0,4]},{"text":"BackToMinions","indices":[53,67]}],"trends":[],"urls":[{"url":"http:\/\/t.co\/AEW12JuzvW","expanded_url":"http:\/\/ow.ly\/d\/3CdC","display_url":"ow.ly\/d\/3CdC","indices":[87,109]}],"user_mentions":[],"symbols":[],"media":[{"id":633224385562718208,"id_str":"633224385562718208","indices":[110,132],"media_url":"http:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","url":"http:\/\/t.co\/khGyxqTMPt","display_url":"pic.twitter.com\/khGyxqTMPt","expanded_url":"http:\/\/twitter.com\/Poundland\/status\/633224386179428353\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"large":{"w":800,"h":400,"resize":"fit"},"medium":{"w":600,"h":300,"resize":"fit"},"small":{"w":340,"h":170,"resize":"fit"}}}]},"extended_entities":{"media":[{"id":633224385562718208,"id_str":"633224385562718208","indices":[110,132],"media_url":"http:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","url":"http:\/\/t.co\/khGyxqTMPt","display_url":"pic.twitter.com\/khGyxqTMPt","expanded_url":"http:\/\/twitter.com\/Poundland\/status\/633224386179428353\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"large":{"w":800,"h":400,"resize":"fit"},"medium":{"w":600,"h":300,"resize":"fit"},"small":{"w":340,"h":170,"resize":"fit"}}}]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"filter_level":"low","lang":"en"},"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"trends":[],"urls":[{"url":"https:\/\/t.co\/fuRD2DkoIt","expanded_url":"https:\/\/twitter.com\/Poundland\/status\/633224386179428353","display_url":"twitter.com\/Poundland\/stat\u2026","indices":[0,23]}],"user_mentions":[],"symbols":[]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"filter_level":"low","lang":"und","timestamp_ms":"1440395450986"} |
++----------------------------------------------------+
+1 row selected (0.151 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweets_text LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24): select * from tweets_text LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweets_text.id, type:bigint, comment:null), FieldSchema(name:tweets_text.created_at, type:string, comment:null), FieldSchema(name:tweets_text.created_at_date, type:string, comment:null), FieldSchema(name:tweets_text.created_at_year, type:string, comment:null), FieldSchema(name:tweets_text.created_at_month, type:string, comment:null), FieldSchema(name:tweets_text.created_at_day, type:string, comment:null), FieldSchema(name:tweets_text.created_at_time, type:string, comment:null), FieldSchema(name:tweets_text.text, type:string, comment:null), FieldSchema(name:tweets_text.time_zone, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24); Time taken: 0.14 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24): select * from tweets_text LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+|   tweets_text.id    |     tweets_text.created_at      | tweets_text.created_at_date  | tweets_text.created_at_year  | tweets_text.created_at_month  | tweets_text.created_at_day  | tweets_text.created_at_time  |                  tweets_text.text                  |    tweets_text.time_zone    |
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+| 635849289332334593  | Mon Aug 24 16:20:58 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:20:58                     | RT @gabhcampos: Aonde mora os minions ?            | NULL                        |
+| 635849314464583680  | Mon Aug 24 16:21:04 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:04                     | RT @zaynmalik: Didn't realise the hate for minions was this real fuck these aliens got it bad | NULL                        |
+| 635849345330315265  | Mon Aug 24 16:21:12 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:12                     | RT @Minions: Gentlemen do not steal lady’s crowns. #Minions http://t.co/vMWC2opvUf | Pacific Time (US & Canada)  |
+| 635849362103472128  | Mon Aug 24 16:21:16 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:16                     | @2limawb open de batata dos minions hahahaha       | NULL                        |
+| 635849371192590337  | Mon Aug 24 16:21:18 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:18                     | RT @AlfaBetaJuega: Algo ha salido mal en esta champú para niños de Minions http://t.co/ueujIXFw4i | Madrid                      |
+| 635849404235284480  | Mon Aug 24 16:21:26 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:26                     | Should not be difficult for people who genuinely want to understand https://t.co/N4CUDZtpDy | Central Time (US & Canada)  |
+| 635849408551235584  | Mon Aug 24 16:21:27 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:27                     | #minions Minions #universalpic universalpic #hollywood BarackObama EU_Commission http://t.co/sWkvs1Bqqm selvaggia lucarelli #mattarella .g | NULL                        |
+| 635849411990450177  | Mon Aug 24 16:21:27 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:27                     | #playdoh#MinnieMouse#TOYS#SurpriseEggs#Minionshttps://t.co/Ca8gFWP2Ka http://t.co/s8gy96Zgtl | Novosibirsk                 |
+| 635849415677231106  | Mon Aug 24 16:21:28 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:28                     | RT @Minions: #CroMinions http://t.co/PxmXduyVvY    | Pacific Time (US & Canada)  |
+| 635849430604886018  | Mon Aug 24 16:21:32 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:32                     | RT @FCPSMaryland: Creating @Minions at Yellow Spring Elementary art class. #FCPSFirstDay https://t.co/14qJJ5JFfa | NULL                        |
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+10 rows selected (0.16 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+Last login: Thu Jul 18 02:11:04 on ttys001
+(base) sondaisy@daisys-Laptop ~ % ssh bd1148@34.219.23.167 
+bd1148@34.219.23.167's password: 
+Last login: Wed Jul 17 17:11:16 2024 from 175.208.217.164
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+79 package(s) needed for security, out of 130 available
+Run "sudo yum update" to apply all updates.
+                                                                    
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR    
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R   
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R 
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R 
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR   
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R  
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+                                                                    
+-bash-4.2$ beeline
+Connecting to jdbc:hive2://ip-172-31-2-142.us-west-2.compute.internal:10000/default;password=bd1148;user=bd1148
+Connected to: Apache Hive (version 3.1.2-amzn-4)
+Driver: Hive JDBC (version 3.1.2-amzn-4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 3.1.2-amzn-4 by Apache Hive
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE if not exists time_zone_map (
+. . . . . . . . . . . . . . . . . . . . . . .>     time_zone STRING,
+. . . . . . . . . . . . . . . . . . . . . . .>     country STRING,
+. . . . . . . . . . . . . . . . . . . . . . .>     notes STRING
+. . . . . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '\t'
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+. . . . . . . . . . . . . . . . . . . . . . .> TBLPROPERTIES ('skip.header.line.count'='1');
+INFO  : Compiling command(queryId=hive_20240717171931_090ae33f-1b4f-4931-bcfc-ed0ae38fecc0): CREATE EXTERNAL TABLE if not exists time_zone_map (
+time_zone STRING,
+country STRING,
+notes STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+TBLPROPERTIES ('skip.header.line.count'='1')
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171931_090ae33f-1b4f-4931-bcfc-ed0ae38fecc0); Time taken: 0.058 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171931_090ae33f-1b4f-4931-bcfc-ed0ae38fecc0): CREATE EXTERNAL TABLE if not exists time_zone_map (
+time_zone STRING,
+country STRING,
+notes STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+TBLPROPERTIES ('skip.header.line.count'='1')
+INFO  : Completed executing command(queryId=hive_20240717171931_090ae33f-1b4f-4931-bcfc-ed0ae38fecc0); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.106 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from time_zone_map LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172006_1f300cc9-cea1-4b45-810b-fd7a302892b8): select * from time_zone_map LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:time_zone_map.time_zone, type:string, comment:null), FieldSchema(name:time_zone_map.country, type:string, comment:null), FieldSchema(name:time_zone_map.notes, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172006_1f300cc9-cea1-4b45-810b-fd7a302892b8); Time taken: 0.132 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172006_1f300cc9-cea1-4b45-810b-fd7a302892b8): select * from time_zone_map LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717172006_1f300cc9-cea1-4b45-810b-fd7a302892b8); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------------+------------------------+----------------------+
+| time_zone_map.time_zone  | time_zone_map.country  | time_zone_map.notes  |
++--------------------------+------------------------+----------------------+
+| Abu Dhabi                | UNITED ARAB EMIRATES   |                      |
+| Adelaide                 | AUSTRALIA              |                      |
+| Alaska                   | UNITED STATES          |                      |
+| Almaty                   | KAZAKHSTAN             |                      |
+| Amsterdam                | NETHERLANDS            |                      |
+| Arizona                  | UNITED STATES          |                      |
+| Astana                   | KAZAKHSTAN             |                      |
+| Athens                   | GREECE                 |                      |
+| Atlantic Time (Canada)   | CANADA                 |                      |
+| Auckland                 | NEW ZEALAND            |                      |
++--------------------------+------------------------+----------------------+
+10 rows selected (0.171 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE if not exists dictionary (
+. . . . . . . . . . . . . . . . . . . . . . .> type string,
+. . . . . . . . . . . . . . . . . . . . . . .> length int,
+. . . . . . . . . . . . . . . . . . . . . . .> word string,
+. . . . . . . . . . . . . . . . . . . . . . .> pos string,
+. . . . . . . . . . . . . . . . . . . . . . .> stemmed string,
+. . . . . . . . . . . . . . . . . . . . . . .> polarity string )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '\t'
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION '/user/bd1148/tmp/data/tables/dictionary';
+INFO  : Compiling command(queryId=hive_20240717172024_10cb3701-5745-475e-ac3d-31afbe9ed7fd): CREATE EXTERNAL TABLE if not exists dictionary (
+type string,
+length int,
+word string,
+pos string,
+stemmed string,
+polarity string )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/dictionary'
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172024_10cb3701-5745-475e-ac3d-31afbe9ed7fd); Time taken: 0.026 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172024_10cb3701-5745-475e-ac3d-31afbe9ed7fd): CREATE EXTERNAL TABLE if not exists dictionary (
+type string,
+length int,
+word string,
+pos string,
+stemmed string,
+polarity string )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/dictionary'
+INFO  : Completed executing command(queryId=hive_20240717172024_10cb3701-5745-475e-ac3d-31afbe9ed7fd); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.034 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from dictionary LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172058_b76ad276-1307-42ca-9fe5-ae87f1af6dee): select * from dictionary LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:dictionary.type, type:string, comment:null), FieldSchema(name:dictionary.length, type:int, comment:null), FieldSchema(name:dictionary.word, type:string, comment:null), FieldSchema(name:dictionary.pos, type:string, comment:null), FieldSchema(name:dictionary.stemmed, type:string, comment:null), FieldSchema(name:dictionary.polarity, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172058_b76ad276-1307-42ca-9fe5-ae87f1af6dee); Time taken: 0.131 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172058_b76ad276-1307-42ca-9fe5-ae87f1af6dee): select * from dictionary LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717172058_b76ad276-1307-42ca-9fe5-ae87f1af6dee); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+| dictionary.type  | dictionary.length  | dictionary.word  | dictionary.pos  | dictionary.stemmed  | dictionary.polarity  |
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+| weaksubj         | 1                  | abandoned        | adj             | n                   | negative             |
+| weaksubj         | 1                  | abandonment      | noun            | n                   | negative             |
+| weaksubj         | 1                  | abandon          | verb            | y                   | negative             |
+| strongsubj       | 1                  | abase            | verb            | y                   | negative             |
+| strongsubj       | 1                  | abasement        | anypos          | y                   | negative             |
+| strongsubj       | 1                  | abash            | verb            | y                   | negative             |
+| weaksubj         | 1                  | abate            | verb            | y                   | negative             |
+| weaksubj         | 1                  | abdicate         | verb            | y                   | negative             |
+| strongsubj       | 1                  | aberration       | adj             | n                   | negative             |
+| strongsubj       | 1                  | aberration       | noun            | n                   | negative             |
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+10 rows selected (0.149 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717172107_ecc413c4-8842-4dde-927a-6df167dba23a): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172107_ecc413c4-8842-4dde-927a-6df167dba23a); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172107_ecc413c4-8842-4dde-927a-6df167dba23a): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172107_ecc413c4-8842-4dde-927a-6df167dba23a); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-------------------+
+|     tab_name      |
++-------------------+
+| dictionary        |
+| l1                |
+| l2                |
+| l3                |
+| products          |
+| ratings           |
+| raw_tweet         |
+| raw_tweets        |
+| time_zone_map     |
+| tweets_clean      |
+| tweets_sentiment  |
+| tweets_simple     |
+| tweets_text       |
+| tweetsbi          |
++-------------------+
+14 rows selected (0.029 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> use bd1148;
+INFO  : Compiling command(queryId=hive_20240717172114_fe262e33-f53e-4e9f-9059-48afae86e21e): use bd1148
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172114_fe262e33-f53e-4e9f-9059-48afae86e21e); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172114_fe262e33-f53e-4e9f-9059-48afae86e21e): use bd1148
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172114_fe262e33-f53e-4e9f-9059-48afae86e21e); Time taken: 0.002 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.024 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717172119_cc369eb7-9ce7-4dc3-86bf-f1468b2f9a1e): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172119_cc369eb7-9ce7-4dc3-86bf-f1468b2f9a1e); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172119_cc369eb7-9ce7-4dc3-86bf-f1468b2f9a1e): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172119_cc369eb7-9ce7-4dc3-86bf-f1468b2f9a1e); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| tweets_text        |
+| weblogs            |
++--------------------+
+9 rows selected (0.03 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE if not exists time_zone_map (
+. . . . . . . . . . . . . . . . . . . . . . .>     time_zone STRING,
+. . . . . . . . . . . . . . . . . . . . . . .>     country STRING,
+. . . . . . . . . . . . . . . . . . . . . . .>     notes STRING
+. . . . . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '\t'
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+. . . . . . . . . . . . . . . . . . . . . . .> TBLPROPERTIES ('skip.header.line.count'='1');
+INFO  : Compiling command(queryId=hive_20240717172149_2dac7ce3-3ed1-475c-ba2e-78b2e18de3cf): CREATE EXTERNAL TABLE if not exists time_zone_map (
+time_zone STRING,
+country STRING,
+notes STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+TBLPROPERTIES ('skip.header.line.count'='1')
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172149_2dac7ce3-3ed1-475c-ba2e-78b2e18de3cf); Time taken: 0.025 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172149_2dac7ce3-3ed1-475c-ba2e-78b2e18de3cf): CREATE EXTERNAL TABLE if not exists time_zone_map (
+time_zone STRING,
+country STRING,
+notes STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/time_zone_map'
+TBLPROPERTIES ('skip.header.line.count'='1')
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172149_2dac7ce3-3ed1-475c-ba2e-78b2e18de3cf); Time taken: 0.016 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.048 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from time_zone_map LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172200_987e9b23-1971-4ccd-b000-d791397f2204): select * from time_zone_map LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:time_zone_map.time_zone, type:string, comment:null), FieldSchema(name:time_zone_map.country, type:string, comment:null), FieldSchema(name:time_zone_map.notes, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172200_987e9b23-1971-4ccd-b000-d791397f2204); Time taken: 0.138 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172200_987e9b23-1971-4ccd-b000-d791397f2204): select * from time_zone_map LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717172200_987e9b23-1971-4ccd-b000-d791397f2204); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------------+------------------------+----------------------+
+| time_zone_map.time_zone  | time_zone_map.country  | time_zone_map.notes  |
++--------------------------+------------------------+----------------------+
+| Abu Dhabi                | UNITED ARAB EMIRATES   |                      |
+| Adelaide                 | AUSTRALIA              |                      |
+| Alaska                   | UNITED STATES          |                      |
+| Almaty                   | KAZAKHSTAN             |                      |
+| Amsterdam                | NETHERLANDS            |                      |
+| Arizona                  | UNITED STATES          |                      |
+| Astana                   | KAZAKHSTAN             |                      |
+| Athens                   | GREECE                 |                      |
+| Atlantic Time (Canada)   | CANADA                 |                      |
+| Auckland                 | NEW ZEALAND            |                      |
++--------------------------+------------------------+----------------------+
+10 rows selected (0.151 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717172210_c2346e40-6d5e-4895-b58c-9f71a3c77d70): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172210_c2346e40-6d5e-4895-b58c-9f71a3c77d70); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172210_c2346e40-6d5e-4895-b58c-9f71a3c77d70): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172210_c2346e40-6d5e-4895-b58c-9f71a3c77d70); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| time_zone_map      |
+| tweets_text        |
+| weblogs            |
++--------------------+
+10 rows selected (0.029 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE if not exists dictionary (
+. . . . . . . . . . . . . . . . . . . . . . .> type string,
+. . . . . . . . . . . . . . . . . . . . . . .> length int,
+. . . . . . . . . . . . . . . . . . . . . . .> word string,
+. . . . . . . . . . . . . . . . . . . . . . .> pos string,
+. . . . . . . . . . . . . . . . . . . . . . .> stemmed string,
+. . . . . . . . . . . . . . . . . . . . . . .> polarity string )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '\t'
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION '/user/bd1148/tmp/data/tables/dictionary';
+INFO  : Compiling command(queryId=hive_20240717172228_d1ac0a63-b23c-4c2e-8848-06ceaf4361aa): CREATE EXTERNAL TABLE if not exists dictionary (
+type string,
+length int,
+word string,
+pos string,
+stemmed string,
+polarity string )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/dictionary'
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172228_d1ac0a63-b23c-4c2e-8848-06ceaf4361aa); Time taken: 0.017 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172228_d1ac0a63-b23c-4c2e-8848-06ceaf4361aa): CREATE EXTERNAL TABLE if not exists dictionary (
+type string,
+length int,
+word string,
+pos string,
+stemmed string,
+polarity string )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/bd1148/tmp/data/tables/dictionary'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172228_d1ac0a63-b23c-4c2e-8848-06ceaf4361aa); Time taken: 0.015 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.038 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717172244_414fda75-be57-4711-a0d8-47338579a626): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172244_414fda75-be57-4711-a0d8-47338579a626); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172244_414fda75-be57-4711-a0d8-47338579a626): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172244_414fda75-be57-4711-a0d8-47338579a626); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| dictionary         |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| time_zone_map      |
+| tweets_text        |
+| weblogs            |
++--------------------+
+11 rows selected (0.035 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from dictionary LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172253_85648e6f-03a7-4c3a-a473-40c50d80683f): select * from dictionary LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:dictionary.type, type:string, comment:null), FieldSchema(name:dictionary.length, type:int, comment:null), FieldSchema(name:dictionary.word, type:string, comment:null), FieldSchema(name:dictionary.pos, type:string, comment:null), FieldSchema(name:dictionary.stemmed, type:string, comment:null), FieldSchema(name:dictionary.polarity, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172253_85648e6f-03a7-4c3a-a473-40c50d80683f); Time taken: 0.137 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172253_85648e6f-03a7-4c3a-a473-40c50d80683f): select * from dictionary LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717172253_85648e6f-03a7-4c3a-a473-40c50d80683f); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+| dictionary.type  | dictionary.length  | dictionary.word  | dictionary.pos  | dictionary.stemmed  | dictionary.polarity  |
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+| weaksubj         | 1                  | abandoned        | adj             | n                   | negative             |
+| weaksubj         | 1                  | abandonment      | noun            | n                   | negative             |
+| weaksubj         | 1                  | abandon          | verb            | y                   | negative             |
+| strongsubj       | 1                  | abase            | verb            | y                   | negative             |
+| strongsubj       | 1                  | abasement        | anypos          | y                   | negative             |
+| strongsubj       | 1                  | abash            | verb            | y                   | negative             |
+| weaksubj         | 1                  | abate            | verb            | y                   | negative             |
+| weaksubj         | 1                  | abdicate         | verb            | y                   | negative             |
+| strongsubj       | 1                  | aberration       | adj             | n                   | negative             |
+| strongsubj       | 1                  | aberration       | noun            | n                   | negative             |
++------------------+--------------------+------------------+-----------------+---------------------+----------------------+
+10 rows selected (0.152 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> Drop View IF EXISTS tweets_simple;
+INFO  : Compiling command(queryId=hive_20240717172329_ed272c11-e4d4-44ff-80f5-40bcfaa9abd9): Drop View IF EXISTS tweets_simple
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172329_ed272c11-e4d4-44ff-80f5-40bcfaa9abd9); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172329_ed272c11-e4d4-44ff-80f5-40bcfaa9abd9): Drop View IF EXISTS tweets_simple
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172329_ed272c11-e4d4-44ff-80f5-40bcfaa9abd9); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.025 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE VIEW IF NOT EXISTS tweets_simple AS
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT
+. . . . . . . . . . . . . . . . . . . . . . .> id tweet_id,
+. . . . . . . . . . . . . . . . . . . . . . .> cast ( from_unixtime( unix_timestamp(
+. . . . . . . . . . . . . . . . . . . . . . .> concat( created_at_year, ' ', created_at_month, ' ',
+. . . . . . . . . . . . . . . . . . . . . . .> substring(created_at,9,11)), 'yyyy MM dd hh:mm:ss'))
+. . . . . . . . . . . . . . . . . . . . . . .> as timestamp) ts,
+. . . . . . . . . . . . . . . . . . . . . . .> text msg,
+. . . . . . . . . . . . . . . . . . . . . . .> time_zone
+. . . . . . . . . . . . . . . . . . . . . . .> FROM tweets_text;
+INFO  : Compiling command(queryId=hive_20240717172332_fcb0078f-0dcf-4a00-8114-c7f0733d33ad): CREATE VIEW IF NOT EXISTS tweets_simple AS
+SELECT
+id tweet_id,
+cast ( from_unixtime( unix_timestamp(
+concat( created_at_year, ' ', created_at_month, ' ',
+substring(created_at,9,11)), 'yyyy MM dd hh:mm:ss'))
+as timestamp) ts,
+text msg,
+time_zone
+FROM tweets_text
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweet_id, type:bigint, comment:null), FieldSchema(name:ts, type:timestamp, comment:null), FieldSchema(name:msg, type:string, comment:null), FieldSchema(name:time_zone, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172332_fcb0078f-0dcf-4a00-8114-c7f0733d33ad); Time taken: 0.136 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172332_fcb0078f-0dcf-4a00-8114-c7f0733d33ad): CREATE VIEW IF NOT EXISTS tweets_simple AS
+SELECT
+id tweet_id,
+cast ( from_unixtime( unix_timestamp(
+concat( created_at_year, ' ', created_at_month, ' ',
+substring(created_at,9,11)), 'yyyy MM dd hh:mm:ss'))
+as timestamp) ts,
+text msg,
+time_zone
+FROM tweets_text
+INFO  : Starting task [Stage-1:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172332_fcb0078f-0dcf-4a00-8114-c7f0733d33ad); Time taken: 0.008 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.149 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweets_simple LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172401_72a3abfe-9f65-4306-890d-10c3123c5a4b): select * from tweets_simple LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweets_simple.tweet_id, type:bigint, comment:null), FieldSchema(name:tweets_simple.ts, type:timestamp, comment:null), FieldSchema(name:tweets_simple.msg, type:string, comment:null), FieldSchema(name:tweets_simple.time_zone, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172401_72a3abfe-9f65-4306-890d-10c3123c5a4b); Time taken: 0.154 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172401_72a3abfe-9f65-4306-890d-10c3123c5a4b): select * from tweets_simple LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717172401_72a3abfe-9f65-4306-890d-10c3123c5a4b); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-------------------------+------------------------+----------------------------------------------------+-----------------------------+
+| tweets_simple.tweet_id  |    tweets_simple.ts    |                 tweets_simple.msg                  |   tweets_simple.time_zone   |
++-------------------------+------------------------+----------------------------------------------------+-----------------------------+
+| 635849289332334593      | 2015-08-24 16:20:58.0  | RT @gabhcampos: Aonde mora os minions ?            | NULL                        |
+| 635849314464583680      | 2015-08-24 16:21:04.0  | RT @zaynmalik: Didn't realise the hate for minions was this real fuck these aliens got it bad | NULL                        |
+| 635849345330315265      | 2015-08-24 16:21:12.0  | RT @Minions: Gentlemen do not steal lady’s crowns. #Minions http://t.co/vMWC2opvUf | Pacific Time (US & Canada)  |
+| 635849362103472128      | 2015-08-24 16:21:16.0  | @2limawb open de batata dos minions hahahaha       | NULL                        |
+| 635849371192590337      | 2015-08-24 16:21:18.0  | RT @AlfaBetaJuega: Algo ha salido mal en esta champú para niños de Minions http://t.co/ueujIXFw4i | Madrid                      |
+| 635849404235284480      | 2015-08-24 16:21:26.0  | Should not be difficult for people who genuinely want to understand https://t.co/N4CUDZtpDy | Central Time (US & Canada)  |
+| 635849408551235584      | 2015-08-24 16:21:27.0  | #minions Minions #universalpic universalpic #hollywood BarackObama EU_Commission http://t.co/sWkvs1Bqqm selvaggia lucarelli #mattarella .g | NULL                        |
+| 635849411990450177      | 2015-08-24 16:21:27.0  | #playdoh#MinnieMouse#TOYS#SurpriseEggs#Minionshttps://t.co/Ca8gFWP2Ka http://t.co/s8gy96Zgtl | Novosibirsk                 |
+| 635849415677231106      | 2015-08-24 16:21:28.0  | RT @Minions: #CroMinions http://t.co/PxmXduyVvY    | Pacific Time (US & Canada)  |
+| 635849430604886018      | 2015-08-24 16:21:32.0  | RT @FCPSMaryland: Creating @Minions at Yellow Spring Elementary art class. #FCPSFirstDay https://t.co/14qJJ5JFfa | NULL                        |
++-------------------------+------------------------+----------------------------------------------------+-----------------------------+
+10 rows selected (0.175 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE VIEW IF NOT EXISTS tweets_clean AS
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT
+. . . . . . . . . . . . . . . . . . . . . . .> t.tweet_id,
+. . . . . . . . . . . . . . . . . . . . . . .> t.ts,
+. . . . . . . . . . . . . . . . . . . . . . .> t.msg,
+. . . . . . . . . . . . . . . . . . . . . . .> m.country
+. . . . . . . . . . . . . . . . . . . . . . .> FROM tweets_simple t LEFT OUTER JOIN
+. . . . . . . . . . . . . . . . . . . . . . .> time_zone_map m ON t.time_zone = m.time_zone;
+INFO  : Compiling command(queryId=hive_20240717172414_4aeff006-b6a0-42d2-8eda-53fef44c03e2): CREATE VIEW IF NOT EXISTS tweets_clean AS
+SELECT
+t.tweet_id,
+t.ts,
+t.msg,
+m.country
+FROM tweets_simple t LEFT OUTER JOIN
+time_zone_map m ON t.time_zone = m.time_zone
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweet_id, type:bigint, comment:null), FieldSchema(name:ts, type:timestamp, comment:null), FieldSchema(name:msg, type:string, comment:null), FieldSchema(name:country, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172414_4aeff006-b6a0-42d2-8eda-53fef44c03e2); Time taken: 0.168 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172414_4aeff006-b6a0-42d2-8eda-53fef44c03e2): CREATE VIEW IF NOT EXISTS tweets_clean AS
+SELECT
+t.tweet_id,
+t.ts,
+t.msg,
+m.country
+FROM tweets_simple t LEFT OUTER JOIN
+time_zone_map m ON t.time_zone = m.time_zone
+INFO  : Starting task [Stage-1:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172414_4aeff006-b6a0-42d2-8eda-53fef44c03e2); Time taken: 0.008 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.184 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweets_clean LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3): select * from tweets_clean LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweets_clean.tweet_id, type:bigint, comment:null), FieldSchema(name:tweets_clean.ts, type:timestamp, comment:null), FieldSchema(name:tweets_clean.msg, type:string, comment:null), FieldSchema(name:tweets_clean.country, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3); Time taken: 0.225 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3): select * from tweets_clean LIMIT 10
+INFO  : Query ID = hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3
+INFO  : Tez session hasn't been created yet. Opening session
+INFO  : Dag name: select * from tweets_clean LIMIT 10 (Stage-1)
+INFO  : Setting tez.task.scale.memory.reserve-fraction to 0.30000001192092896
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1404)
+
+INFO  : Map 1: 0/1	Map 2: 0/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 0(+1)/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 1/1	
+INFO  : Map 1: 1/1	Map 2: 1/1	
+INFO  : Completed executing command(queryId=hive_20240717172420_3a30558c-d564-4065-b266-49bef2e97fc3); Time taken: 10.767 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------------------------+------------------------+----------------------------------------------------+-----------------------+
+| tweets_clean.tweet_id  |    tweets_clean.ts     |                  tweets_clean.msg                  | tweets_clean.country  |
++------------------------+------------------------+----------------------------------------------------+-----------------------+
+| 636207817502904320     | 2015-08-25 16:05:38.0  | When ever I see a celebrity dabbling into the witch craft of Minions I'm just like u went from my fav to my problematic fav | UNITED STATES         |
+| 636207844778315776     | 2015-08-25 16:05:45.0  | #playdoh#frozen#supermario#surpriseeggs#minionshttps://t.co/Jl2R4GtVMi http://t.co/8N4bJiaqgv | UKRAINE               |
+| 636207845780889600     | 2015-08-25 16:05:45.0  | @dexychik @CBuckthorn She did, it was just about Tyler Parks off from that Minions tribute band. | UNITED STATES         |
+| 636207856375697408     | 2015-08-25 16:05:47.0  | 💎"'Sí no arriesgas no pierdes pero tampoco ganas"'💎Minions💞 | NULL                  |
+| 636207872574144513     | 2015-08-25 16:05:51.0  | RT @Minions: Can you crack the #Minions heiroglyphics code?https://t.co/q4y8dzoteK | NULL                  |
+| 636207878962069504     | 2015-08-25 16:05:53.0  | Hoy en #CinexCostaMall Cabimas:#MINIONS#TED2#LOS4FANTÁSTICOS#INTENSAMENTE | NULL                  |
+| 636207886318878720     | 2015-08-25 16:05:54.0  | RT @RealTimeRating: #CINE 20/8-24/8#ElClan 514.416#ElPrincipito 77.448#Ted2: 42.098#Pixeles 34.834#Minions 29.107#ElPayasoDelMal 28.6… | BRAZIL                |
+| 636207916727574528     | 2015-08-25 16:06:02.0  | RT @RealTimeRating: #CINE 20/8-24/8#ElClan 514.416#ElPrincipito 77.448#Ted2: 42.098#Pixeles 34.834#Minions 29.107#ElPayasoDelMal 28.6… | NULL                  |
+| 636207919873269760     | 2015-08-25 16:06:02.0  | #minions Minions #universalpic universalpic #hollywood BarackObama EU_Commission http://t.co/sWkvs1Bqqm selvaggia lucarelli #mattarella .e | NULL                  |
+| 636207922423332864     | 2015-08-25 16:06:03.0  | แม่งเป๊ะมาก ยอมใจคนตัดต่อ555555EXO - Growl (Minions ver.) https://t.co/q4ydT6EMKy via @YouTube | THAILAND              |
++------------------------+------------------------+----------------------------------------------------+-----------------------+
+10 rows selected (11.006 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> -- Create view l1 to compute sentiment
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> create view IF NOT EXISTS l1 as
+. . . . . . . . . . . . . . . . . . . . . . .> select id, words
+. . . . . . . . . . . . . . . . . . . . . . .> from tweets_text
+. . . . . . . . . . . . . . . . . . . . . . .> lateral view explode(sentences(lower(text))) dummy as words;
+INFO  : Compiling command(queryId=hive_20240717172440_d3649818-f9a6-416b-829a-231dceb3d3f8): create view IF NOT EXISTS l1 as
+select id, words
+from tweets_text
+lateral view explode(sentences(lower(text))) dummy as words
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:id, type:bigint, comment:null), FieldSchema(name:words, type:array<string>, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172440_d3649818-f9a6-416b-829a-231dceb3d3f8); Time taken: 0.024 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172440_d3649818-f9a6-416b-829a-231dceb3d3f8): create view IF NOT EXISTS l1 as
+select id, words
+from tweets_text
+lateral view explode(sentences(lower(text))) dummy as words
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172440_d3649818-f9a6-416b-829a-231dceb3d3f8); Time taken: 0.009 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.04 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> -- Create view l2 from l1 to compute sentiment
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> create view IF NOT EXISTS l2 as
+. . . . . . . . . . . . . . . . . . . . . . .> select id, word
+. . . . . . . . . . . . . . . . . . . . . . .> from l1
+. . . . . . . . . . . . . . . . . . . . . . .> lateral view explode( words ) dummy as word;
+INFO  : Compiling command(queryId=hive_20240717172446_1e208e83-c8f3-4dc6-8686-8b52fe2634a1): create view IF NOT EXISTS l2 as
+select id, word
+from l1
+lateral view explode( words ) dummy as word
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:id, type:bigint, comment:null), FieldSchema(name:word, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172446_1e208e83-c8f3-4dc6-8686-8b52fe2634a1); Time taken: 0.03 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172446_1e208e83-c8f3-4dc6-8686-8b52fe2634a1): create view IF NOT EXISTS l2 as
+select id, word
+from l1
+lateral view explode( words ) dummy as word
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172446_1e208e83-c8f3-4dc6-8686-8b52fe2634a1); Time taken: 0.009 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.045 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> -- Create view l3 from l2 to compute sentiment
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> create view IF NOT EXISTS l3 as select
+. . . . . . . . . . . . . . . . . . . . . . .> id tweet_id,
+. . . . . . . . . . . . . . . . . . . . . . .> l2.word,
+. . . . . . . . . . . . . . . . . . . . . . .> case d.polarity
+. . . . . . . . . . . . . . . . . . . . . . .> when 'negative' then -1
+. . . . . . . . . . . . . . . . . . . . . . .> when 'positive' then 1
+. . . . . . . . . . . . . . . . . . . . . . .> else 0 end as polarity
+. . . . . . . . . . . . . . . . . . . . . . .> from l2 left outer join dictionary d on l2.word = d.word;
+INFO  : Compiling command(queryId=hive_20240717172452_6cda7890-a9a0-46cb-b8da-2def4d644b0c): create view IF NOT EXISTS l3 as select
+id tweet_id,
+l2.word,
+case d.polarity
+when 'negative' then -1
+when 'positive' then 1
+else 0 end as polarity
+from l2 left outer join dictionary d on l2.word = d.word
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweet_id, type:bigint, comment:null), FieldSchema(name:word, type:string, comment:null), FieldSchema(name:polarity, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172452_6cda7890-a9a0-46cb-b8da-2def4d644b0c); Time taken: 0.04 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172452_6cda7890-a9a0-46cb-b8da-2def4d644b0c): create view IF NOT EXISTS l3 as select
+id tweet_id,
+l2.word,
+case d.polarity
+when 'negative' then -1
+when 'positive' then 1
+else 0 end as polarity
+from l2 left outer join dictionary d on l2.word = d.word
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172452_6cda7890-a9a0-46cb-b8da-2def4d644b0c); Time taken: 0.008 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.054 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from l3 LIMIT 3;
+INFO  : Compiling command(queryId=hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170): select * from l3 LIMIT 3
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:l3.tweet_id, type:bigint, comment:null), FieldSchema(name:l3.word, type:string, comment:null), FieldSchema(name:l3.polarity, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170); Time taken: 0.076 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170): select * from l3 LIMIT 3
+INFO  : Query ID = hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170
+INFO  : Session is already open
+INFO  : Dag name: select * from l3 LIMIT 3 (Stage-1)
+INFO  : Setting tez.task.scale.memory.reserve-fraction to 0.30000001192092896
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1404)
+
+INFO  : Map 1: 0/1	Map 2: 0/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 0(+1)/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 1/1	
+INFO  : Map 1: 1/1	Map 2: 1/1	
+INFO  : Completed executing command(queryId=hive_20240717172501_0f39ce61-deb9-4350-881a-1b294456b170); Time taken: 5.011 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------+----------+--------------+
+|     l3.tweet_id     | l3.word  | l3.polarity  |
++---------------------+----------+--------------+
+| 636207817502904320  | when     | 0            |
+| 636207817502904320  | ever     | 0            |
+| 636207817502904320  | i        | 0            |
++---------------------+----------+--------------+
+3 rows selected (5.099 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> create table IF NOT EXISTS tweets_sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> stored as orc as select
+. . . . . . . . . . . . . . . . . . . . . . .> tweet_id,
+. . . . . . . . . . . . . . . . . . . . . . .> case
+. . . . . . . . . . . . . . . . . . . . . . .> when sum( polarity ) > 0 then 'positive'
+. . . . . . . . . . . . . . . . . . . . . . .> when sum( polarity ) < 0 then 'negative'
+. . . . . . . . . . . . . . . . . . . . . . .> else 'neutral' end as sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> from l3 group by tweet_id;
+INFO  : Compiling command(queryId=hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff): create table IF NOT EXISTS tweets_sentiment
+stored as orc as select
+tweet_id,
+case
+when sum( polarity ) > 0 then 'positive'
+when sum( polarity ) < 0 then 'negative'
+else 'neutral' end as sentiment
+from l3 group by tweet_id
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweet_id, type:bigint, comment:null), FieldSchema(name:sentiment, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff); Time taken: 0.076 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff): create table IF NOT EXISTS tweets_sentiment
+stored as orc as select
+tweet_id,
+case
+when sum( polarity ) > 0 then 'positive'
+when sum( polarity ) < 0 then 'negative'
+else 'neutral' end as sentiment
+from l3 group by tweet_id
+INFO  : Query ID = hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff
+INFO  : Session is already open
+INFO  : Dag name: create table IF NOT EXISTS tweets...tweet_id (Stage-1)
+INFO  : Setting tez.task.scale.memory.reserve-fraction to 0.30000001192092896
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1404)
+
+INFO  : Map 1: 0/1	Map 3: 0/1	Reducer 2: 0/2	
+INFO  : Map 1: 0(+1)/1	Map 3: 0(+1)/1	Reducer 2: 0/2	
+INFO  : Map 1: 0(+1)/1	Map 3: 1/1	Reducer 2: 0/2	
+INFO  : Map 1: 1/1	Map 3: 1/1	Reducer 2: 0(+2)/2	
+INFO  : Map 1: 1/1	Map 3: 1/1	Reducer 2: 2/2	
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Moving data to directory hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/hive/warehouse/bd1148.db/tweets_sentiment from hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/hive/warehouse/bd1148.db/.hive-staging_hive_2024-07-17_17-25-17_419_7743064767055574497-2742/-ext-10001
+INFO  : Starting task [Stage-4:DDL] in serial mode
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172517_611f76e7-33d8-482b-86e2-10ffab80daff); Time taken: 5.699 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (5.789 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweets_sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> LIMIT 3;
+INFO  : Compiling command(queryId=hive_20240717172537_71f31a65-e59a-4fdb-a469-4a2d28cce391): select * from tweets_sentiment
+LIMIT 3
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweets_sentiment.tweet_id, type:bigint, comment:null), FieldSchema(name:tweets_sentiment.sentiment, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172537_71f31a65-e59a-4fdb-a469-4a2d28cce391); Time taken: 0.145 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172537_71f31a65-e59a-4fdb-a469-4a2d28cce391): select * from tweets_sentiment
+LIMIT 3
+INFO  : Completed executing command(queryId=hive_20240717172537_71f31a65-e59a-4fdb-a469-4a2d28cce391); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++----------------------------+-----------------------------+
+| tweets_sentiment.tweet_id  | tweets_sentiment.sentiment  |
++----------------------------+-----------------------------+
+| 625515028054188032         | neutral                     |
+| 625515034983018496         | neutral                     |
+| 625515040628678656         | neutral                     |
++----------------------------+-----------------------------+
+3 rows selected (0.16 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE TABLE IF NOT EXISTS tweetsbi
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ","
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION "/user/bd1148/tmp/tweets_bi"
+. . . . . . . . . . . . . . . . . . . . . . .> AS SELECT
+. . . . . . . . . . . . . . . . . . . . . . .> t.*,
+. . . . . . . . . . . . . . . . . . . . . . .> case s.sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> when 'positive' then 2
+. . . . . . . . . . . . . . . . . . . . . . .> when 'neutral' then 1
+. . . . . . . . . . . . . . . . . . . . . . .> when 'negative' then 0
+. . . . . . . . . . . . . . . . . . . . . . .> end as sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> FROM tweets_clean t LEFT OUTER JOIN tweets_sentiment s
+. . . . . . . . . . . . . . . . . . . . . . .> on t.tweet_id = s.tweet_id;
+INFO  : Compiling command(queryId=hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264): CREATE TABLE IF NOT EXISTS tweetsbi
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_bi"
+AS SELECT
+t.*,
+case s.sentiment
+when 'positive' then 2
+when 'neutral' then 1
+when 'negative' then 0
+end as sentiment
+FROM tweets_clean t LEFT OUTER JOIN tweets_sentiment s
+on t.tweet_id = s.tweet_id
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : No Stats for bd1148@time_zone_map, Columns: country, time_zone
+INFO  : No Stats for bd1148@tweets_sentiment, Columns: sentiment, tweet_id
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:t.tweet_id, type:bigint, comment:null), FieldSchema(name:t.ts, type:timestamp, comment:null), FieldSchema(name:t.msg, type:string, comment:null), FieldSchema(name:t.country, type:string, comment:null), FieldSchema(name:sentiment, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264); Time taken: 0.256 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264): CREATE TABLE IF NOT EXISTS tweetsbi
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_bi"
+AS SELECT
+t.*,
+case s.sentiment
+when 'positive' then 2
+when 'neutral' then 1
+when 'negative' then 0
+end as sentiment
+FROM tweets_clean t LEFT OUTER JOIN tweets_sentiment s
+on t.tweet_id = s.tweet_id
+INFO  : Query ID = hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264
+INFO  : Session is already open
+INFO  : Dag name: CREATE TABLE IF NOT EXISTS twee...s.tweet_id (Stage-1)
+INFO  : Setting tez.task.scale.memory.reserve-fraction to 0.30000001192092896
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1404)
+
+INFO  : Map 1: 0/1	Map 2: 0/1	Map 3: 0/1	
+INFO  : Map 1: 0/1	Map 2: 0/1	Map 3: 0(+1)/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+1)/1	
+INFO  : Map 1: 0(+1)/1	Map 2: 1/1	Map 3: 1/1	
+INFO  : Map 1: 1/1	Map 2: 1/1	Map 3: 1/1	
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Moving data to directory /user/bd1148/tmp/tweets_bi from hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/bd1148/tmp/tweets_bi/.hive-staging_hive_2024-07-17_17-26-02_333_6163605449436172230-2742/-ext-10002
+INFO  : Starting task [Stage-4:DDL] in serial mode
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717172602_5f7eaed7-b1df-41b7-b81f-253a17975264); Time taken: 6.328 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (6.589 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweetsbi LIMIT 3;
+INFO  : Compiling command(queryId=hive_20240717172617_0cd45aac-b59b-4c25-abfb-a98a941061db): select * from tweetsbi LIMIT 3
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweetsbi.tweet_id, type:bigint, comment:null), FieldSchema(name:tweetsbi.ts, type:timestamp, comment:null), FieldSchema(name:tweetsbi.msg, type:string, comment:null), FieldSchema(name:tweetsbi.country, type:string, comment:null), FieldSchema(name:tweetsbi.sentiment, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172617_0cd45aac-b59b-4c25-abfb-a98a941061db); Time taken: 0.145 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172617_0cd45aac-b59b-4c25-abfb-a98a941061db): select * from tweetsbi LIMIT 3
+INFO  : Completed executing command(queryId=hive_20240717172617_0cd45aac-b59b-4c25-abfb-a98a941061db); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------+------------------------+----------------------------------------------------+----------------------------------------------------+---------------------+
+|  tweetsbi.tweet_id  |      tweetsbi.ts       |                    tweetsbi.msg                    |                  tweetsbi.country                  | tweetsbi.sentiment  |
++---------------------+------------------------+----------------------------------------------------+----------------------------------------------------+---------------------+
+| 636207817502904320  | 2015-08-25 16:05:38.0  | When ever I see a celebrity dabbling into the witch craft of Minions I'm just like u went from my fav to my problematic fav | UNITED STATES                                      | 2                   |
+| 636207844778315776  | 2015-08-25 16:05:45.0  | #playdoh#frozen#supermario#surpriseeggs#minionshttps://t.co/Jl2R4GtVMi http://t.co/8N4bJiaqgv | UKRAINE                                            | 0                   |
+| 636207845780889600  | 2015-08-25 16:05:45.0  | @dexychik @CBuckthorn She did                      |  it was just about Tyler Parks off from that Minions tribute band. | NULL                |
++---------------------+------------------------+----------------------------------------------------+----------------------------------------------------+---------------------+
+3 rows selected (0.158 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select count(*) from tweetsbi;
+INFO  : Compiling command(queryId=hive_20240717172623_47685630-366a-47a8-96b0-e4f00fc7c911): select count(*) from tweetsbi
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717172623_47685630-366a-47a8-96b0-e4f00fc7c911); Time taken: 0.128 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717172623_47685630-366a-47a8-96b0-e4f00fc7c911): select count(*) from tweetsbi
+INFO  : Completed executing command(queryId=hive_20240717172623_47685630-366a-47a8-96b0-e4f00fc7c911); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------+
+|  _c0   |
++--------+
+| 24879  |
++--------+
+1 row selected (0.137 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> 
+Last login: Thu Jul 18 02:05:39 on ttys000
+(base) sondaisy@daisys-Laptop ~ % ssh bd1148@34.219.23.167 
+bd1148@34.219.23.167's password: 
+Last login: Wed Jul 17 17:05:49 2024 from 175.208.217.164
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+79 package(s) needed for security, out of 130 available
+Run "sudo yum update" to apply all updates.
+                                                                    
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR    
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R   
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R 
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R 
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR   
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R  
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+                                                                    
+-bash-4.2$ beeline
+Connecting to jdbc:hive2://ip-172-31-2-142.us-west-2.compute.internal:10000/default;password=bd1148;user=bd1148
+Connected to: Apache Hive (version 3.1.2-amzn-4)
+Driver: Hive JDBC (version 3.1.2-amzn-4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 3.1.2-amzn-4 by Apache Hive
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION "/user/bd1148/tmp/tweets_staging";
+INFO  : Compiling command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f): CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_staging"
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f); Time taken: 0.051 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f): CREATE EXTERNAL TABLE IF NOT EXISTS raw_tweets(json_response STRING)
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_staging"
+INFO  : Completed executing command(queryId=hive_20240717171137_34f2fef6-9be2-458f-94db-fab75647013f); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.099 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171144_778a97be-e277-4e38-9031-abc196f9df5b); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-------------------+
+|     tab_name      |
++-------------------+
+| dictionary        |
+| l1                |
+| l2                |
+| l3                |
+| products          |
+| ratings           |
+| raw_tweet         |
+| raw_tweets        |
+| time_zone_map     |
+| tweets_clean      |
+| tweets_sentiment  |
+| tweets_simple     |
+| tweets_text       |
+| tweetsbi          |
++-------------------+
+14 rows selected (0.059 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> use bd1148
+. . . . . . . . . . . . . . . . . . . . . . .> show tables;
+Error: Error while compiling statement: FAILED: ParseException line 2:0 missing EOF at 'show' near 'bd1148' (state=42000,code=40000)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> use bd1148;
+INFO  : Compiling command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442): use bd1148
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442): use bd1148
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171229_fb5aab0a-e1a7-4cde-b27f-81e698457442); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.033 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a); Time taken: 0.017 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171234_89c73c07-8440-40ad-a927-630f673e323a); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| tweets_text        |
+| weblogs            |
++--------------------+
+9 rows selected (0.032 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE TABLE IF NOT EXISTS tweets_text (
+. . . . . . . . . . . . . . . . . . . . . . .> id BIGINT,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_date STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_year STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_month STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_day STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> created_at_time STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> text STRING,
+. . . . . . . . . . . . . . . . . . . . . . .> time_zone STRING);
+INFO  : Compiling command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7): CREATE TABLE IF NOT EXISTS tweets_text (
+id BIGINT,
+created_at STRING,
+created_at_date STRING,
+created_at_year STRING,
+created_at_month STRING,
+created_at_day STRING,
+created_at_time STRING,
+text STRING,
+time_zone STRING)
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7); Time taken: 0.02 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7): CREATE TABLE IF NOT EXISTS tweets_text (
+id BIGINT,
+created_at STRING,
+created_at_date STRING,
+created_at_year STRING,
+created_at_month STRING,
+created_at_day STRING,
+created_at_time STRING,
+text STRING,
+time_zone STRING)
+INFO  : Completed executing command(queryId=hive_20240717171249_40a5d2bd-597c-47b6-82ed-9fe51feb1ec7); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.027 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> show tables;
+INFO  : Compiling command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5): show tables
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5); Time taken: 0.016 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171255_b212a7d5-33f1-4098-802b-81eeddd8cde5); Time taken: 0.004 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|      tab_name      |
++--------------------+
+| baseball_salaries  |
+| building           |
+| clienterrors       |
+| hvac               |
+| ratings            |
+| raw_tweets         |
+| refersperday       |
+| tweets_text        |
+| weblogs            |
++--------------------+
+9 rows selected (0.03 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> FROM raw_tweets
+. . . . . . . . . . . . . . . . . . . . . . .> INSERT OVERWRITE TABLE tweets_text
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.created_at'),
+. . . . . . . . . . . . . . . . . . . . . . .> CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+. . . . . . . . . . . . . . . . . . . . . . .> ' ',
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+. . . . . . . . . . . . . . . . . . . . . . .> CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'May' then '05' WHEN 'Jun' then '06'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+. . . . . . . . . . . . . . . . . . . . . . .> WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+. . . . . . . . . . . . . . . . . . . . . . .> end,
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+. . . . . . . . . . . . . . . . . . . . . . .> SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.text'),
+. . . . . . . . . . . . . . . . . . . . . . .> get_json_object(json_response, '$.user.time_zone');
+INFO  : Compiling command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44): FROM raw_tweets
+INSERT OVERWRITE TABLE tweets_text
+SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+get_json_object(json_response, '$.created_at'),
+CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+' ',
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+WHEN 'May' then '05' WHEN 'Jun' then '06'
+WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+end,
+SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+get_json_object(json_response, '$.text'),
+get_json_object(json_response, '$.user.time_zone')
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null), FieldSchema(name:_c1, type:string, comment:null), FieldSchema(name:_c2, type:string, comment:null), FieldSchema(name:_c3, type:string, comment:null), FieldSchema(name:_c4, type:string, comment:null), FieldSchema(name:_c5, type:string, comment:null), FieldSchema(name:_c6, type:string, comment:null), FieldSchema(name:_c7, type:string, comment:null), FieldSchema(name:_c8, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44); Time taken: 0.196 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44): FROM raw_tweets
+INSERT OVERWRITE TABLE tweets_text
+SELECT CAST(get_json_object(json_response, '$.id_str') as BIGINT),
+get_json_object(json_response, '$.created_at'),
+CONCAT(SUBSTR (get_json_object(json_response, '$.created_at'),1,10),
+' ',
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4)),
+SUBSTR (get_json_object(json_response, '$.created_at'),27,4),
+CASE SUBSTR (get_json_object(json_response, '$.created_at'),5,3)
+WHEN 'Jan' then '01' WHEN 'Feb' then '02'
+WHEN 'Mar' then '03' WHEN 'Apr' then '04'
+WHEN 'May' then '05' WHEN 'Jun' then '06'
+WHEN 'Jul' then '07' WHEN 'Aug' then '08'
+WHEN 'Sep' then '09' WHEN 'Oct' then '10'
+WHEN 'Nov' then '11' WHEN 'Dec' then '12'
+end,
+SUBSTR (get_json_object(json_response, '$.created_at'),9,2),
+SUBSTR (get_json_object(json_response, '$.created_at'),12,8),
+get_json_object(json_response, '$.text'),
+get_json_object(json_response, '$.user.time_zone')
+INFO  : Query ID = hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44
+INFO  : Tez session hasn't been created yet. Opening session
+INFO  : Dag name: FROM raw_tweets
+INSERT...'$.user.time_zone') (Stage-1)
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1403)
+
+INFO  : Map 1: 0/7	Reducer 2: 0/1	
+INFO  : Map 1: 0/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+1)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 0(+7)/7	Reducer 2: 0/1	
+INFO  : Map 1: 5(+2)/7	Reducer 2: 0(+1)/1	
+INFO  : Map 1: 7/7	Reducer 2: 1/1	
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table bd1148.tweets_text from hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/hive/warehouse/bd1148.db/tweets_text/.hive-staging_hive_2024-07-17_17-13-10_838_5406558113045572179-2740/-ext-10000
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20240717171310_8a8641ad-48d6-4cdd-b951-d90e3a961e44); Time taken: 16.498 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (16.701 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from raw_tweets LIMIT 1; 
+INFO  : Compiling command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499): select * from raw_tweets LIMIT 1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:raw_tweets.json_response, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499); Time taken: 0.136 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499): select * from raw_tweets LIMIT 1
+INFO  : Completed executing command(queryId=hive_20240717171334_29c92bfa-eb98-4d6a-8bb3-36437bf6f499); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++----------------------------------------------------+
+|              raw_tweets.json_response              |
++----------------------------------------------------+
+| {"created_at":"Mon Aug 24 05:50:50 +0000 2015","id":635690712110092288,"id_str":"635690712110092288","text":"https:\/\/t.co\/fuRD2DkoIt","source":"\u003ca href=\"http:\/\/ifttt.com\" rel=\"nofollow\"\u003eIFTTT\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":3408479698,"id_str":"3408479698","name":"Mad Rabbit","screen_name":"SirRabbits","location":"","url":null,"description":null,"protected":false,"verified":false,"followers_count":108,"friends_count":109,"listed_count":0,"favourites_count":15,"statuses_count":29242,"created_at":"Sat Aug 08 10:09:37 +0000 2015","utc_offset":null,"time_zone":null,"geo_enabled":false,"lang":"en","contributors_enabled":false,"is_translator":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_link_color":"0084B4","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/629958495111094272\/OKzy80CV_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/629958495111094272\/OKzy80CV_normal.png","default_profile":true,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"quoted_status_id":633224386179428353,"quoted_status_id_str":"633224386179428353","quoted_status":{"created_at":"Mon Aug 17 10:30:33 +0000 2015","id":633224386179428353,"id_str":"633224386179428353","text":"#WIN 1 of 20 Minions backpacks! RT &amp; Follow with #BackToMinions to enter. T&amp;C: http:\/\/t.co\/AEW12JuzvW http:\/\/t.co\/khGyxqTMPt","source":"\u003ca href=\"http:\/\/www.hootsuite.com\" rel=\"nofollow\"\u003eHootsuite\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":39240629,"id_str":"39240629","name":"Poundland","screen_name":"Poundland","location":"UK","url":"http:\/\/www.poundland.co.uk","description":"Awarded the Discount Retailer of the Year at the 2014 Grocer Gold Awards for a second year running.","protected":false,"verified":false,"followers_count":47673,"friends_count":1692,"listed_count":221,"favourites_count":355,"statuses_count":13186,"created_at":"Mon May 11 12:25:29 +0000 2009","utc_offset":3600,"time_zone":"London","geo_enabled":false,"lang":"en","contributors_enabled":false,"is_translator":false,"profile_background_color":"FCBA01","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/606042561464123392\/tSWMs0g5.png","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/606042561464123392\/tSWMs0g5.png","profile_background_tile":true,"profile_link_color":"F59A04","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/616202263560892416\/QortB7yV_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/616202263560892416\/QortB7yV_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/39240629\/1435746007","default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[{"text":"WIN","indices":[0,4]},{"text":"BackToMinions","indices":[53,67]}],"trends":[],"urls":[{"url":"http:\/\/t.co\/AEW12JuzvW","expanded_url":"http:\/\/ow.ly\/d\/3CdC","display_url":"ow.ly\/d\/3CdC","indices":[87,109]}],"user_mentions":[],"symbols":[],"media":[{"id":633224385562718208,"id_str":"633224385562718208","indices":[110,132],"media_url":"http:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","url":"http:\/\/t.co\/khGyxqTMPt","display_url":"pic.twitter.com\/khGyxqTMPt","expanded_url":"http:\/\/twitter.com\/Poundland\/status\/633224386179428353\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"large":{"w":800,"h":400,"resize":"fit"},"medium":{"w":600,"h":300,"resize":"fit"},"small":{"w":340,"h":170,"resize":"fit"}}}]},"extended_entities":{"media":[{"id":633224385562718208,"id_str":"633224385562718208","indices":[110,132],"media_url":"http:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/CMmqOUSUsAA0p02.jpg","url":"http:\/\/t.co\/khGyxqTMPt","display_url":"pic.twitter.com\/khGyxqTMPt","expanded_url":"http:\/\/twitter.com\/Poundland\/status\/633224386179428353\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"large":{"w":800,"h":400,"resize":"fit"},"medium":{"w":600,"h":300,"resize":"fit"},"small":{"w":340,"h":170,"resize":"fit"}}}]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"filter_level":"low","lang":"en"},"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"trends":[],"urls":[{"url":"https:\/\/t.co\/fuRD2DkoIt","expanded_url":"https:\/\/twitter.com\/Poundland\/status\/633224386179428353","display_url":"twitter.com\/Poundland\/stat\u2026","indices":[0,23]}],"user_mentions":[],"symbols":[]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"filter_level":"low","lang":"und","timestamp_ms":"1440395450986"} |
++----------------------------------------------------+
+1 row selected (0.151 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweets_text LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24): select * from tweets_text LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweets_text.id, type:bigint, comment:null), FieldSchema(name:tweets_text.created_at, type:string, comment:null), FieldSchema(name:tweets_text.created_at_date, type:string, comment:null), FieldSchema(name:tweets_text.created_at_year, type:string, comment:null), FieldSchema(name:tweets_text.created_at_month, type:string, comment:null), FieldSchema(name:tweets_text.created_at_day, type:string, comment:null), FieldSchema(name:tweets_text.created_at_time, type:string, comment:null), FieldSchema(name:tweets_text.text, type:string, comment:null), FieldSchema(name:tweets_text.time_zone, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24); Time taken: 0.14 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24): select * from tweets_text LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240717171338_fcc842ac-a8fb-47a8-92dd-e31bffceae24); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+|   tweets_text.id    |     tweets_text.created_at      | tweets_text.created_at_date  | tweets_text.created_at_year  | tweets_text.created_at_month  | tweets_text.created_at_day  | tweets_text.created_at_time  |                  tweets_text.text                  |    tweets_text.time_zone    |
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+| 635849289332334593  | Mon Aug 24 16:20:58 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:20:58                     | RT @gabhcampos: Aonde mora os minions ?            | NULL                        |
+| 635849314464583680  | Mon Aug 24 16:21:04 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:04                     | RT @zaynmalik: Didn't realise the hate for minions was this real fuck these aliens got it bad | NULL                        |
+| 635849345330315265  | Mon Aug 24 16:21:12 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:12                     | RT @Minions: Gentlemen do not steal lady’s crowns. #Minions http://t.co/vMWC2opvUf | Pacific Time (US & Canada)  |
+| 635849362103472128  | Mon Aug 24 16:21:16 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:16                     | @2limawb open de batata dos minions hahahaha       | NULL                        |
+| 635849371192590337  | Mon Aug 24 16:21:18 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:18                     | RT @AlfaBetaJuega: Algo ha salido mal en esta champú para niños de Minions http://t.co/ueujIXFw4i | Madrid                      |
+| 635849404235284480  | Mon Aug 24 16:21:26 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:26                     | Should not be difficult for people who genuinely want to understand https://t.co/N4CUDZtpDy | Central Time (US & Canada)  |
+| 635849408551235584  | Mon Aug 24 16:21:27 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:27                     | #minions Minions #universalpic universalpic #hollywood BarackObama EU_Commission http://t.co/sWkvs1Bqqm selvaggia lucarelli #mattarella .g | NULL                        |
+| 635849411990450177  | Mon Aug 24 16:21:27 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:27                     | #playdoh#MinnieMouse#TOYS#SurpriseEggs#Minionshttps://t.co/Ca8gFWP2Ka http://t.co/s8gy96Zgtl | Novosibirsk                 |
+| 635849415677231106  | Mon Aug 24 16:21:28 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:28                     | RT @Minions: #CroMinions http://t.co/PxmXduyVvY    | Pacific Time (US & Canada)  |
+| 635849430604886018  | Mon Aug 24 16:21:32 +0000 2015  | Mon Aug 24 2015              | 2015                         | 08                            | 24                          | 16:21:32                     | RT @FCPSMaryland: Creating @Minions at Yellow Spring Elementary art class. #FCPSFirstDay https://t.co/14qJJ5JFfa | NULL                        |
++---------------------+---------------------------------+------------------------------+------------------------------+-------------------------------+-----------------------------+------------------------------+----------------------------------------------------+-----------------------------+
+10 rows selected (0.16 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> client_loop: send disconnect: Broken pipe
+(base) sondaisy@daisys-Laptop ~ % ssh bd1148@34.219.23.167 
+bd1148@34.219.23.167's password: 
+Last login: Wed Jul 17 17:19:14 2024 from 175.208.217.164
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+79 package(s) needed for security, out of 130 available
+Run "sudo yum update" to apply all updates.
+                                                                    
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR    
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R   
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R 
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R 
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR   
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R  
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+                                                                    
+-bash-4.2$ beeline
+Connecting to jdbc:hive2://ip-172-31-2-142.us-west-2.compute.internal:10000/default;password=bd1148;user=bd1148
+Connected to: Apache Hive (version 3.1.2-amzn-4)
+Driver: Hive JDBC (version 3.1.2-amzn-4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 3.1.2-amzn-4 by Apache Hive
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> DROP TABLE IF EXISTS tweetsent;
+INFO  : Compiling command(queryId=hive_20240718150249_61f216fc-3124-4435-b890-35f06a744ba1): DROP TABLE IF EXISTS tweetsent
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20240718150249_61f216fc-3124-4435-b890-35f06a744ba1); Time taken: 0.058 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240718150249_61f216fc-3124-4435-b890-35f06a744ba1): DROP TABLE IF EXISTS tweetsent
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20240718150249_61f216fc-3124-4435-b890-35f06a744ba1); Time taken: 0.033 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.136 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> CREATE TABLE IF NOT EXISTS tweetsent
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ","
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION "/user/bd1148/tmp/tweets_sentiment"
+. . . . . . . . . . . . . . . . . . . . . . .> AS
+. . . . . . . . . . . . . . . . . . . . . . .> select tweet_id, ts, REGEXP_REPLACE(msg, '[^a-zA-Z0-9]+', ' ')
+. . . . . . . . . . . . . . . . . . . . . . .> message, country, sentiment from tweetsbi
+. . . . . . . . . . . . . . . . . . . . . . .> where tweet_id IS NOT NULL
+. . . . . . . . . . . . . . . . . . . . . . .> AND ( sentiment =0 or sentiment =1 or sentiment =2) ;
+INFO  : Compiling command(queryId=hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0): CREATE TABLE IF NOT EXISTS tweetsent
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_sentiment"
+AS
+select tweet_id, ts, REGEXP_REPLACE(msg, '[^a-zA-Z0-9]+', ' ')
+message, country, sentiment from tweetsbi
+where tweet_id IS NOT NULL
+AND ( sentiment =0 or sentiment =1 or sentiment =2)
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweet_id, type:bigint, comment:null), FieldSchema(name:ts, type:timestamp, comment:null), FieldSchema(name:message, type:string, comment:null), FieldSchema(name:country, type:string, comment:null), FieldSchema(name:sentiment, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0); Time taken: 0.078 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0): CREATE TABLE IF NOT EXISTS tweetsent
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION "/user/bd1148/tmp/tweets_sentiment"
+AS
+select tweet_id, ts, REGEXP_REPLACE(msg, '[^a-zA-Z0-9]+', ' ')
+message, country, sentiment from tweetsbi
+where tweet_id IS NOT NULL
+AND ( sentiment =0 or sentiment =1 or sentiment =2)
+INFO  : Query ID = hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0
+INFO  : Tez session hasn't been created yet. Opening session
+INFO  : Dag name: CREATE TABLE IF NOT EXISTS tweetsent
+R...=2) (Stage-1)
+INFO  : Status: Running (Executing on YARN cluster with App id application_1719626380631_1555)
+
+INFO  : Map 1: 0/1	
+INFO  : Map 1: 0(+1)/1	
+INFO  : Map 1: 1/1	
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Moving data to directory /user/bd1148/tmp/tweets_sentiment from hdfs://ip-172-31-2-142.us-west-2.compute.internal:8020/user/bd1148/tmp/tweets_sentiment/.hive-staging_hive_2024-07-18_15-02-49_903_1105206572377373573-3101/-ext-10002
+INFO  : Starting task [Stage-4:DDL] in serial mode
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20240718150249_8e3c1e11-04ed-4b2d-932f-3411f29645d0); Time taken: 10.573 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (10.663 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> -- See the content of the tweetsent table
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> select * from tweetsent LIMIT 10;
+INFO  : Compiling command(queryId=hive_20240718150317_1a7641f0-61e0-4770-b44d-c7acea4cb28b): select * from tweetsent LIMIT 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tweetsent.tweet_id, type:bigint, comment:null), FieldSchema(name:tweetsent.ts, type:timestamp, comment:null), FieldSchema(name:tweetsent.message, type:string, comment:null), FieldSchema(name:tweetsent.country, type:string, comment:null), FieldSchema(name:tweetsent.sentiment, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20240718150317_1a7641f0-61e0-4770-b44d-c7acea4cb28b); Time taken: 0.142 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20240718150317_1a7641f0-61e0-4770-b44d-c7acea4cb28b): select * from tweetsent LIMIT 10
+INFO  : Completed executing command(queryId=hive_20240718150317_1a7641f0-61e0-4770-b44d-c7acea4cb28b); Time taken: 0.001 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------+------------------------+----------------------------------------------------+--------------------+----------------------+
+| tweetsent.tweet_id  |      tweetsent.ts      |                 tweetsent.message                  | tweetsent.country  | tweetsent.sentiment  |
++---------------------+------------------------+----------------------------------------------------+--------------------+----------------------+
+| 636207817502904320  | 2015-08-25 16:05:38.0  | When ever I see a celebrity dabbling into the witch craft of Minions I m just like u went from my fav to my problematic fav | UNITED STATES      | 2                    |
+| 636207844778315776  | 2015-08-25 16:05:45.0  |  playdoh frozen supermario surpriseeggs minionshttps t co Jl2R4GtVMi http t co 8N4bJiaqgv | UKRAINE            | 0                    |
+| 636207856375697408  | 2015-08-25 16:05:47.0  |  S no arriesgas no pierdes pero tampoco ganas Minions  | NULL               | 1                    |
+| 636207872574144513  | 2015-08-25 16:05:51.0  | RT Minions Can you crack the Minions heiroglyphics code https t co q4y8dzoteK | NULL               | 1                    |
+| 636207878962069504  | 2015-08-25 16:05:53.0  | Hoy en CinexCostaMall Cabimas MINIONS TED2 LOS4FANT STICOS INTENSAMENTE | NULL               | 1                    |
+| 636207886318878720  | 2015-08-25 16:05:54.0  | RT RealTimeRating CINE 20 8 24 8 ElClan 514 416 ElPrincipito 77 448 Ted2 42 098 Pixeles 34 834 Minions 29 107 ElPayasoDelMal 28 6  | BRAZIL             | 1                    |
+| 636207916727574528  | 2015-08-25 16:06:02.0  | RT RealTimeRating CINE 20 8 24 8 ElClan 514 416 ElPrincipito 77 448 Ted2 42 098 Pixeles 34 834 Minions 29 107 ElPayasoDelMal 28 6  | NULL               | 1                    |
+| 636207919873269760  | 2015-08-25 16:06:02.0  |  minions Minions universalpic universalpic hollywood BarackObama EU Commission http t co sWkvs1Bqqm selvaggia lucarelli mattarella e | NULL               | 1                    |
+| 636207922423332864  | 2015-08-25 16:06:03.0  |  555555EXO Growl Minions ver https t co q4ydT6EMKy via YouTube | THAILAND           | 0                    |
+| 636207923451031552  | 2015-08-25 16:06:03.0  | RT matiascarrica Mi princesa fan de los Minions jaja https t co kXQsTpg85l | BRAZIL             | 1                    |
++---------------------+------------------------+----------------------------------------------------+--------------------+----------------------+
+10 rows selected (0.188 seconds)
+0: jdbc:hive2://ip-172-31-2-142.us-west-2.com> -bash-4.1$ hdfs dfs -ls /user/bd1148/tmp/tweets_sentiment
+. . . . . . . . . . . . . . . . . . . . . . .> 
+Last login: Thu Jul 18 02:18:39 on ttys002
+(base) sondaisy@daisys-Laptop ~ % ssh bd1148@34.219.23.167 
+bd1148@34.219.23.167's password: 
+Permission denied, please try again.
+bd1148@34.219.23.167's password: 
+Last failed login: Thu Jul 18 15:03:49 UTC 2024 from 175.208.217.164 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Thu Jul 18 15:02:21 2024 from 175.208.217.164
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+79 package(s) needed for security, out of 130 available
+Run "sudo yum update" to apply all updates.
+                                                                    
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR    
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R   
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R 
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R 
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR   
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R  
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+                                                                    
+-bash-4.2$ -bash-4.1$ hdfs dfs -ls /user/bd1148/tmp/tweets_sentiment
+-bash: -bash-4.1$: command not found
+-bash-4.2$ dfs dfs -ls /user/bd1148/tmp/tweets_sentiment
+-bash: dfs: command not found
+-bash-4.2$ hdfs dfs -ls /user/bd1148/tmp/tweets_sentiment
+Found 1 items
+-rw-r--r--   1 bd1148 hdfsadmingroup    2833225 2024-07-18 15:03 /user/bd1148/tmp/tweets_sentiment/000000_0
+-bash-4.2$ dfs -get /user/bd1148/tmp/tweets_sentiment/00000*_0
+-bash: dfs: command not found
+-bash-4.2$ dfs -get /user/bd1148/tmp/tweets_sentiment/00000_0
+-bash: dfs: command not found
+-bash-4.2$ hdfs dfs -get /user/bd1148/tmp/tweets_sentiment/000000_0
+
+-bash-4.2$ 
+-bash-4.2$ ls -al
+total 14480
+drwx------  4 bd1148 bd1148      189 Jul 18 15:09 .
+drwxr-xr-x 85 root   root       4096 Jul  2 01:45 ..
+-rw-r--r--  1 bd1148 bd1148  2833225 Jul 18 15:09 000000_0
+-rw-------  1 bd1148 bd1148    22175 Jul 17 17:26 .bash_history
+drwxr-xr-x  2 root   root         40 Jun 29 02:27 .beeline
+-rw-rw-r--  1 bd1148 bd1148   308921 Jul 17 17:08 dictionary.tsv
+-rw-rw-r--  1 bd1148 bd1148    10722 Jul 15 14:08 .hivehistory
+-rw-rw-r--  1 bd1148 bd1148 11630743 Jul 17 17:08 minion_tweets.tar.gz
+-rw-------  1 bd1148 bd1148       47 Jul  2 05:39 .python_history
+drwx------  2 bd1148 bd1148       25 Jul  2 08:34 .ssh
+-rw-rw-r--  1 bd1148 bd1148     3021 Jul 17 17:08 time_zone_map.tsv
+-bash-4.2$ mv 000000_0 senti_out.csv
+-bash-4.2$ ls
+dictionary.tsv  minion_tweets.tar.gz  senti_out.csv  time_zone_map.tsv
+-bash-4.2$ 
